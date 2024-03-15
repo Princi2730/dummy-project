@@ -3,7 +3,8 @@ import "./../style.css"
 import DeleteUser from "@/util/DeleteUser";
 
 async function getUsers() {
-  let data = await fetch("http://localhost:3000/api/users");
+  const apiUrl = process.env.URL;
+  let data = await fetch(apiUrl + "/api/users");
   data = await data.json();
   return data;
 }
