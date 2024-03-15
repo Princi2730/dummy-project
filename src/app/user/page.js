@@ -3,11 +3,17 @@ import "./../style.css"
 import DeleteUser from "@/util/DeleteUser";
 
 async function getUsers() {
-  const apiUrl = process.env.URL;
-  let data = await fetch(apiUrl + "/api/users");
-  data = await data.json();
-  return data;
+  try {
+    const apiUrl = process.env.URL;
+    let data = await fetch(apiUrl + "/api/users");
+    data = await data.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
 }
+
 
 export default async function Page() {
   const users = await getUsers();
